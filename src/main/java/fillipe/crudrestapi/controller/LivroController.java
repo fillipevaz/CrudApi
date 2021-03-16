@@ -1,42 +1,35 @@
 package fillipe.crudrestapi.controller;
 
 import fillipe.crudrestapi.model.LivroModel;
-import fillipe.crudrestapi.repository.LivroRepository;
-import fillipe.crudrestapi.service.LivroService;
-import net.bytebuddy.asm.Advice;
-import org.hibernate.internal.util.StringHelper;
+import fillipe.crudrestapi.service.LivroServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.List;
 
 @RestController
 public class LivroController {
 
     @Autowired
-    private LivroService service;
+    private LivroServiceImpl service;
 
 
 
     @GetMapping(path = "/api/livro/")
     public Iterable<LivroModel> consultarTodos()
     {
-            return service.getLivros();
+            return service.findAll();
     }
 
     @PostMapping(path = "/api/livro/salvar")
     public LivroModel salvar(@RequestBody LivroModel livro)
     {
-        return  service.saveLivro(livro) ;
+        return  service.save(livro) ;
 
     }
 
     @DeleteMapping(path = "/api/livro/excluir/{codigo}")
     public void salvar(@PathVariable("codigo") Integer codigo)
     {
-         service.deleteLivro(codigo);
+         service.delete(codigo);
     }
 
     @PutMapping(path = "/api/livro/update")

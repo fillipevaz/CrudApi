@@ -16,7 +16,7 @@ public class LivroModel {
     @Column(nullable = false, length = 100)
     public String autor;
     @Column(nullable = false, length = 10)
-    public String dtEmissao;
+    public Integer edicao;
 
     public Integer getCodigo() {
         return codigo;
@@ -42,11 +42,12 @@ public class LivroModel {
         this.autor = autor;
     }
 
-    public String getDtEmissao() {
-        return dtEmissao;
+    public Integer getEdicao() {
+        return edicao;
     }
 
-    public void setDtEmissao(String dtEmissao) {
-        this.dtEmissao = dtEmissao;
+    public void setEdicao(Integer edicao) {
+        this.edicao = edicao;
     }
+
 }
