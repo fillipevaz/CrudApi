@@ -27,15 +27,29 @@ public class LivroService {
         return repository.findById(id).orElse(null);
     }
 
-    public String deleteLivro(int id)
+    public void deleteLivro(int id)
     {
+        boolean exists = repository.existsById(id);
+        if(!exists)
+        {
+            throw new IllegalStateException
+                    (
+                            "Livro com o id: "+id+" não existe !"
+                    );
+        }
         repository.deleteById(id);
-        return "Livro Removido !! "+id;
     }
 
     public LivroModel updateLivro(LivroModel livroModel)
     {
-        LivroModel existLivro = repository.findById(livroModel.getCodigo()).orElse(livroModel);
+
+        LivroModel existLivro = repository.findById(livroModel.getCodigo()).orElseThrow
+                (
+                        () -> new IllegalStateException
+                                (
+                                        "Livro com o id: "+livroModel.getCodigo()+" não existe !"
+                                )
+                );
         existLivro.setAutor(livroModel.autor);
         existLivro.setDtEmissao(livroModel.dtEmissao);
         existLivro.setNome(livroModel.nome);

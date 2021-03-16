@@ -6,6 +6,10 @@ import javax.persistence.*;
 public class LivroModel {
 
     @Id
+    @GeneratedValue
+            (
+                    strategy = GenerationType.IDENTITY
+            )
     public Integer codigo;
     @Column(nullable = false, length = 100)
     public String nome;
