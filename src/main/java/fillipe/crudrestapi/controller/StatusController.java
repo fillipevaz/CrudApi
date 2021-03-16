@@ -13,12 +13,12 @@ public class StatusController {
 //    @GetMapping(path = "/api/status")
 //    public String teste()
 //    {
-//        return "O Pai esta On";
+//        return "passou aqui";
 //    }
     @RequestMapping(method = RequestMethod.GET)
     public String index()
     {
-        return "employee/index  ";
+        return "index";
     }
 
 }
